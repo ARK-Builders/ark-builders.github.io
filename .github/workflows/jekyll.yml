@@ -9,8 +9,14 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Build the site in the jekyll/builder container
+    - name: Build static web-site
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+
+    - name: Upload ZIP
+      uses: actions/upload-artifact@v2
+      with:
+        name: web-site
+        path: _site
