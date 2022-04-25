@@ -68,6 +68,10 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+<<<<<<< HEAD
+=======
+  x86_64-linux
+>>>>>>> c0ccade3771e8414ab13800dd5ade5bba753b6c9
 
 DEPENDENCIES
   http_parser.rb (~> 0.6.0)
@@ -79,4 +83,8 @@ DEPENDENCIES
   webrick (~> 1.7)
 
 BUNDLED WITH
+<<<<<<< HEAD
    2.3.7
+=======
+   2.3.11
+>>>>>>> c0ccade3771e8414ab13800dd5ade5bba753b6c9
