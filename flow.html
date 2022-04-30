@@ -1,0 +1,55 @@
+---
+layout: page
+title: Flow
+permalink: /flow/
+---
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+
+    <h3> Home Screen </h3>
+    <div class="mermaid">
+        graph TD 
+        A[HomeScreeen] --> B
+        B(Settings) 
+        A[HomeScreeen] --> C
+        C(ManageFolders) 
+        A[HomeScreeen] --> D
+        D(NavigateData) 
+        A[HomeScreeen] --> E
+        E(+  AddRootFolder)
+     </div>
+
+    <h3> Settings Screen </h3>
+    <div class="mermaid">
+        graph TD 
+        A[SettingsScreen] --> B
+        B(CrashReports) 
+        A[SettingsScreen] --> C
+        C(ImagesCacheReplication) 
+        A[SettingsScreen] --> D
+        D(RemoveLostResourcesTags) 
+        A[SettingsScreen] --> E
+        E(IndexReplication) 
+        F(ResetPreferences)
+        G(Toggle On/Off)
+        B --> F
+        C --> F
+        D --> F
+        E --> F
+        F --> G
+    </div>
+
+    <h3> Add root Screen </h3>
+    <div class="mermaid">
+        graph TD 
+        A[AddRootFolderScreen] --> B
+        B(AddRoot) 
+        C(Cancel)
+        A --> C
+    </div>
+
+</body>
