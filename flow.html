@@ -12,44 +12,51 @@ permalink: /flow/
 
     <h3> Home Screen </h3>
     <div class="mermaid">
-        graph TD 
-        A[HomeScreeen] --> B
-        B(Settings) 
-        A[HomeScreeen] --> C
-        C(ManageFolders) 
-        A[HomeScreeen] --> D
-        D(NavigateData) 
-        A[HomeScreeen] --> E
-        E(+  AddRootFolder)
+        stateDiagram-v2
+        [*] --> HomeScreeen
+        HomeScreeen --> Settings
+        HomeScreeen --> ManageFolders
+        HomeScreeen --> NavigateData
+        HomeScreeen --> (+)(AddRootFolder)
      </div>
 
     <h3> Settings Screen </h3>
     <div class="mermaid">
-        graph TD 
-        A[SettingsScreen] --> B
-        B(CrashReports) 
-        A[SettingsScreen] --> C
-        C(ImagesCacheReplication) 
-        A[SettingsScreen] --> D
-        D(RemoveLostResourcesTags) 
-        A[SettingsScreen] --> E
-        E(IndexReplication) 
-        F(ResetPreferences)
-        G(Toggle On/Off)
-        B --> F
-        C --> F
-        D --> F
-        E --> F
-        F --> G
-    </div>
+        stateDiagram-v2
+        [*] --> SettingsScreen
+        SettingsScreen --> CrashReports
+        SettingsScreen --> ImagesCacheReplication
+        SettingsScreen --> IndexReplication
+        SettingsScreen --> RemoveLostResourcesTags
+        CrashReports --> ResetPreferences
+        ImagesCacheReplication --> ResetPreferences
+        IndexReplication --> ResetPreferences
+        RemoveLostResourcesTags --> ResetPreferences
+        ResetPreferences --> Toggle(On/Off)
+     </div>
 
     <h3> Add root Screen </h3>
     <div class="mermaid">
-        graph TD 
-        A[AddRootFolderScreen] --> B
-        B(AddRoot) 
-        C(Cancel)
-        A --> C
+        stateDiagram-v2
+        [*] --> AddRootFolderScreen
+        AddRootFolderScreen  --> AddRoot
+        AddRootFolderScreen  --> Cancel
     </div>
-
+ <h3> Resource Grid </h3>
+ <div class="mermaid">
+    stateDiagram-v2
+    [*] --> RootFolder
+    RootFolder  --> Index
+    Index  --> Sort
+    Sort  --> Name,Size,Last_Modified,Extension,As_is
+    Sort  --> Ascending,Descending
+    RootFolder  --> Kind(Resource_default_type)
+    Kind(Resource_default_type) --> Toogle_On
+    Kind(Resource_default_type) --> Toogle_Off
+    Toogle_On --> Resource_Type(e.g.Image,Video)
+    RootFolder --> Select_File
+    Select_File --> Quick_Tags(Add_Label)
+    Select_File --> Resource_Tags(Add_Label)
+    RootFolder --> Show_All_Tag_Labels
+ </div>
 </body>
