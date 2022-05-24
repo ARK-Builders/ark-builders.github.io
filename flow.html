@@ -9,54 +9,118 @@ permalink: /flow/
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
-
-    <h3> Home Screen </h3>
-    <div class="mermaid">
-        stateDiagram-v2
-        [*] --> HomeScreeen
-        HomeScreeen --> Settings
-        HomeScreeen --> ManageFolders
-        HomeScreeen --> NavigateData
-        HomeScreeen --> (+)(AddRootFolder)
-     </div>
-
-    <h3> Settings Screen </h3>
-    <div class="mermaid">
-        stateDiagram-v2
-        [*] --> SettingsScreen
-        SettingsScreen --> CrashReports
-        SettingsScreen --> ImagesCacheReplication
-        SettingsScreen --> IndexReplication
-        SettingsScreen --> RemoveLostResourcesTags
-        CrashReports --> ResetPreferences
-        ImagesCacheReplication --> ResetPreferences
-        IndexReplication --> ResetPreferences
-        RemoveLostResourcesTags --> ResetPreferences
-        ResetPreferences --> Toggle(On/Off)
-     </div>
-
-    <h3> Add root Screen </h3>
-    <div class="mermaid">
-        stateDiagram-v2
-        [*] --> AddRootFolderScreen
-        AddRootFolderScreen  --> AddRoot
-        AddRootFolderScreen  --> Cancel
-    </div>
- <h3> Resource Grid </h3>
+ <h3> Resource Grid View</h3>
  <div class="mermaid">
-    stateDiagram-v2
-    [*] --> RootFolder
-    RootFolder  --> Index
-    Index  --> Sort
-    Sort  --> Name,Size,Last_Modified,Extension,As_is
-    Sort  --> Ascending,Descending
-    RootFolder  --> Kind(Resource_default_type)
-    Kind(Resource_default_type) --> Toogle_On
-    Kind(Resource_default_type) --> Toogle_Off
-    Toogle_On --> Resource_Type(e.g.Image,Video)
-    RootFolder --> Select_File
-    Select_File --> Quick_Tags(Add_Label)
-    Select_File --> Resource_Tags(Add_Label)
-    RootFolder --> Show_All_Tag_Labels
- </div>
+    classDiagram
+direction BT
+FoldersView <|-- NotifiableView
+ResourcesView <|-- NotifiableView
+SettingsView <|-- NotifiableView
+class FoldersView {
+  Update_Folders_View
+  Open_Root_PickerDialog
+  Progress
+}
+class GalleryView {
+  Share_Resource 
+  Edit_Resource 
+  Preview 
+  Notify_Resources_Changed
+  Edit_Tags
+  Progress
+  External_App_View 
+  Exit_Fullscreen
+  Tag_Change
+  Preview_Tags
+  Delete_Resource
+}
+class ResourcesView {
+    Title_of_Tool_Bar
+    Filter_Tags
+    Select_Tags
+    Enable_Tags
+    Filter_Enabled_Tags  
+}
+class SettingsView {
+Remove_Lost_Resources_Tags
+Crash_Report
+Index_Replication
+ Img_Cache_Replication
+}
+class NotifiableView {
+  NotifyUser 
+}
+FoldersView  -->  NotifiableView 
+ResourcesView  -->  NotifiableView 
+SettingsView  -->  NotifiableView 
+</div>
+
+ <h3> Resources View </h3>
+ <div class="mermaid">
+    classDiagram
+direction BT
+    ResourcesView <|-- MvpView
+    ResourcesView <|-- NotifiableView
+    ResourcesView : Title_of_Tool_Bar
+    ResourcesView : Filter_Tags
+    ResourcesView : Select_Tags
+    ResourcesView : Enable_Tags
+    ResourcesView : Filter_Enabled_Tags   
+    ResourcesView --> MvpView
+    ResourcesView --> NotifiableView
+</div>
+<h3> Notifiable View </h3>
+ <div class="mermaid">
+classDiagram
+direction BT
+class NotifiableView {
+    NotifyUser 
+}
+</div>
+
+<h3>Settings View</h3>
+<div class="mermaid">
+classDiagram
+direction BT
+SettingsView <|-- MvpView
+SettingsView <|-- NotifiableView
+SettingsView : Remove_Lost_Resources_Tags
+SettingsView : Crash_Report
+SettingsView : Index_Replication
+SettingsView :  Img_Cache_Replication
+
+SettingsView  -->  MvpView 
+SettingsView  -->  NotifiableView 
+</div>
+
+<h3>Gallery View</h3>
+<div class="mermaid">
+classDiagram
+direction BT
+GalleryView <|-- MvpView
+ GalleryView : Share_Resource 
+ GalleryView : Edit_Resource 
+ GalleryView : Preview 
+ GalleryView : Notify_Resources_Changed
+ GalleryView : Edit_Tags
+ GalleryView : Progress
+ GalleryView : External_App_View 
+ GalleryView : Exit_Fullscreen
+ GalleryView : Tag_Change
+ GalleryView : Preview_Tags
+ GalleryView : Delete_Resource
+
+GalleryView  -->  MvpView 
+</div>
+
+<h3>Folders View</h3>
+<div class="mermaid">
+ classDiagram
+ direction BT
+ FoldersView <|-- NotifiableView
+    FoldersView : Update_Folders_View
+    FoldersView : Open_Root_PickerDialog
+    FoldersView : Progress
+    FoldersView  -->  NotifiableView 
+</div>
 </body>
